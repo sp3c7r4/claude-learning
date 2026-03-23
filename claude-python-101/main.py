@@ -50,9 +50,9 @@ def chat(system=None, temperature=0.9):
             print("[Claude]: ", end="")
             for text in stream.text_stream:
                 # 3. Print each chunk immediately, no newline between chunks
-                msg += text
                 print(text, end="", )
 
+    msg = stream.get_final_message()
     print("\n")
     return msg
 
