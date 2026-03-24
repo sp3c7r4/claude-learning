@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Write a Python function that lists all S3 buckets in an AWS account using boto3 and returns their names as a list."
+  },
+  {
+    "task": "Create a JSON IAM policy that allows read-only access (GetObject) to all objects in a specific S3 bucket."
+  },
+  {
+    "task": "Write a regular expression to validate AWS ARNs (Amazon Resource Names)."
+  },
+  {
+    "task": "Write a Python function that retrieves the current AWS account ID using boto3 STS."
+  },
+  {
+    "task": "Create a JSON configuration for an AWS Lambda function with a timeout of 10 seconds, memory size of 128 MB, and Python 3.11 runtime."
+  }
+]

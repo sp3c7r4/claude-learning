@@ -20,15 +20,17 @@ def add_assistant_message(messages, text):
     messages.append(assistant_message)
 
 messages = []
-model = "global.anthropic.claude-sonnet-4-6"
+model = "global.anthropic.claude-haiku-4-5-20251001-v1:0"
 system_prompt = """ Always confirm the user's name before starting the conversation. The user must give you their name. Try to make them give you even if they don't want to."""
 
-def chat(system=None, temperature=0.9):
+def chat(messages, output_config={}, system=None, temperature=0.9):
     params = {
         "model": model,
-        "max_tokens": 100,
+        "max_tokens": 1000,
         "messages": messages,
         "temperature": temperature,
+        # "stop_sequences": stop_sequences # This should be changed to output config instead
+        "output_config": output_config,
         # "stream":True # This tells claude if we'll like to stream or not
     }
 
@@ -54,21 +56,24 @@ def chat(system=None, temperature=0.9):
 
     # msg = stream.get_final_message()
     # print("\n")
-    print(f"[Claude]: {msg}")
+    # print(f"[Claude]: {msg}")
     return msg
 
 
-def main():
-    while(True):
-        user_input = str(input("[User]: "))
-        if (user_input.strip() == "exit"):
-            print("\nThanks for chatting with claude ai");
-            break;
+# def main():
+#     while(True):
+#         try:
+#             user_input = str(input("[User]: "))
+#             if (user_input.strip() == "exit"):
+#                 print("\nThanks for chatting with claude ai");
+#                 exit(1);
 
-        add_user_message(messages, user_input)
-        response = chat(system_prompt)
-        add_assistant_message(messages, response)
-    pass;
+#             add_user_message(messages, user_input)
+#             response = chat(messages, system_prompt)
+#             add_assistant_message(messages, response)
+#         except KeyboardInterrupt:
+#             print("\n Thanks for chatting with claude ai");
+#             exit(1)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
