@@ -5,13 +5,50 @@ from statistics import mean
 
 
 load_dotenv()
+# Code evaluators
+import re, ast, json
+
+def validate_python(text):
+   try:
+      ast.parse(text);
+      return 10
+   except SyntaxError:
+      return 0
+
+def validate_json(text):
+   try:
+      json.loads(text.strip());
+      return 10
+   except json.JSONDecodeError:
+      return 0
+   
+def validate_regex(text):
+   try:
+      re.compile(text.strip());
+      return 10
+   except re.error:
+      return 0
+
+def syntax_grade(response, test_case):
+   format = test_case["format"]
+   if format == "json":
+      return validate_json(response)
+   elif format == "python":
+      return validate_python(response)
+   else:
+      return validate_regex(response)
+
+   
 # Helper functions to help run evals
 def run_prompt(test_case):
   prompt = f"""
   Please solve the following task:
 
   {test_case["task"]}
-"""
+
+  * Respond only with Python, JSON or a Plain Regex
+  * Do not add any comments
+  """
   messages = []
   add_user_message(messages, prompt)
   output = chat(messages)
@@ -31,6 +68,10 @@ def grade_by_model(test_case, output):
       <solution>
       {output}
       </solution>
+
+      <solution_criteria>
+      {test_case["solution_criteria"]}
+      </solution_criteria>
 
       Output Format
       Provide your evaluation as a structured JSON object with the following fields, in this specific order:
@@ -77,17 +118,21 @@ def run_test_case(test_case):
   
   output = run_prompt(test_case)
 
-  grade = grade_by_model(test_case, output)
+  syntax_score = syntax_grade(output, test_case)
+  model_grade = grade_by_model(test_case, output)
 
-  score = grade["score"]
-  weaknesses = grade["weaknesses"]
-  strengths = grade["strengths"]
-  reasoning = grade["reasoning"]
+  model_score = model_grade["score"]
+  reasoning = model_grade["reasoning"]
+  
+  score = (model_score+syntax_score)
+  # weaknesses = grade["weaknesses"]
+  # strengths = grade["strengths"]
+  # reasoning = grade["reasoning"]
 
   return {
+    "output": output,
+    "test_case": test_case,
     "reasoning": reasoning,
-    "weaknesses": weaknesses,
-    "strengths": strengths,
     "score": score
   }
 
@@ -100,11 +145,11 @@ def run_eval(dataset):
         results.append(result)
 
     average_score = mean([result["score"] for result in results])
-    print(f"Average score: {average_score}")
+    print(f"Average score: {average_score}\n")
 
     return results
 
-with open("dataset.json", "r") as dataset:
+with open("cases.json", "r") as dataset:
   data = json.load(dataset);
 
 results = run_eval(data)

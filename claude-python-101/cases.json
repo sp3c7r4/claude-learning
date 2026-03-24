@@ -1,0 +1,27 @@
+[
+  {
+    "task": "Write a Python function that validates an AWS S3 bucket name according to AWS naming rules (3-63 characters, lowercase letters, numbers, hyphens, must start and end with letter or number)",
+    "format": "python",
+    "solution_criteria": "Function should return True for valid bucket names like 'my-bucket-123' and False for invalid names like 'My-Bucket' or 'bucket-', should handle edge cases for length and special characters"
+  },
+  {
+    "task": "Create a JSON object representing an AWS IAM policy that allows read-only access to a specific S3 bucket named 'my-data-bucket'",
+    "format": "json",
+    "solution_criteria": "JSON must include Version, Statement array, Effect set to Allow, Action array with s3:GetObject and s3:ListBucket, Resource array with appropriate ARNs for the bucket and its objects"
+  },
+  {
+    "task": "Write a regular expression to match AWS ARN (Amazon Resource Name) format for any service",
+    "format": "regex",
+    "solution_criteria": "Regex should match valid ARNs like 'arn:aws:s3:::my-bucket' or 'arn:aws:ec2:us-east-1:123456789012:instance/i-1234567890abcdef0', must enforce arn:partition:service:region:account-id:resource structure"
+  },
+  {
+    "task": "Write a Python function that extracts the region and service name from an AWS ARN string",
+    "format": "python",
+    "solution_criteria": "Function should parse ARNs and return a dictionary with 'service' and 'region' keys, handle cases where region is empty for global services like IAM, should work with ARNs like 'arn:aws:ec2:us-west-2:123456789012:instance/i-xyz'"
+  },
+  {
+    "task": "Create a JSON object representing an AWS Lambda function configuration with environment variables, timeout settings, and memory allocation",
+    "format": "json",
+    "solution_criteria": "JSON must include FunctionName, Runtime, Handler, Timeout, MemorySize, Environment object with Variables nested inside, should represent a valid Lambda configuration structure"
+  }
+]
