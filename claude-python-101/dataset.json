@@ -1,17 +1,50 @@
 [
   {
-    "task": "Write a Python function that lists all S3 buckets in an AWS account using boto3 and returns their names as a list."
+    "Testing with a shorter, heavier strength athlete (e.g., 170cm, 95kg) focused on muscle gain with vegan dietary restrictions to ensure adequate protein sources and caloric surplus are properly incorporated": {
+      "prompt_inputs": {
+        "height": "170",
+        "weight": "95",
+        "goal": "muscle gain",
+        "restrictions": "vegan"
+      },
+      "solution_criteria": [
+        "Meal plan includes 4-5 meals distributed throughout the day",
+        "Total daily calories support a caloric surplus appropriate for a 95kg athlete",
+        "All meals comply with vegan dietary restrictions",
+        "Protein sources provide adequate intake for muscle growth (minimum 1.6g per kg body weight)",
+        "Meals are practical and compact for a single day format"
+      ]
+    }
   },
   {
-    "task": "Create a JSON IAM policy that allows read-only access (GetObject) to all objects in a specific S3 bucket."
+    "Testing with a moderate-build athlete (e.g., 175cm, 75kg) aiming for weight loss with a gluten-free restriction to verify calorie deficit is maintained while accommodating alternative grain options and balanced macronutrients": {
+      "prompt_inputs": {
+        "height": "175",
+        "weight": "75",
+        "goal": "weight loss",
+        "restrictions": "gluten-free"
+      },
+      "solution_criteria": [
+        "Meal plan maintains a calorie deficit appropriate for weight loss",
+        "All meals are gluten-free or use gluten-free alternatives",
+        "Macronutrients are balanced across all meals",
+        "Meal plan is compact and covers one full day"
+      ]
+    }
   },
   {
-    "task": "Write a regular expression to validate AWS ARNs (Amazon Resource Names)."
-  },
-  {
-    "task": "Write a Python function that retrieves the current AWS account ID using boto3 STS."
-  },
-  {
-    "task": "Create a JSON configuration for an AWS Lambda function with a timeout of 10 seconds, memory size of 128 MB, and Python 3.11 runtime."
+    "Testing with a tall, lightweight endurance athlete (e.g., 185cm, 68kg) training for a marathon with no dietary restrictions to verify high-carbohydrate meal distribution across breakfast, lunch, dinner, and snacks": {
+      "prompt_inputs": {
+        "height": "185",
+        "weight": "68",
+        "goal": "marathon training with high-carbohydrate nutrition for endurance",
+        "restrictions": "none"
+      },
+      "solution_criteria": [
+        "Meal plan includes 4 eating occasions (breakfast, lunch, dinner, snack) with carbohydrate-focused options",
+        "Total daily calories and macronutrient distribution support endurance athlete needs",
+        "Plan is formatted compactly in 1 day structure with clear meal descriptions"
+      ]
+    }
   }
 ]
